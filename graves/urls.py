@@ -4,8 +4,9 @@ from django.conf.urls.i18n import i18n_patterns
 from django.urls import include, path
 
 urlpatterns = [
-    # project-level urls
-]
+    path("", include("arches_controlled_lists.urls")),
+    path("", include("arches_component_lab.urls")),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler400 = "arches.app.views.main.custom_400"
 handler403 = "arches.app.views.main.custom_403"

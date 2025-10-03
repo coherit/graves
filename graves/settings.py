@@ -6,6 +6,8 @@ import os
 import inspect
 import semantic_version
 from datetime import datetime, timedelta
+
+from arches_controlled_lists.settings import REFERENCES_INDEX_NAME
 from django.utils.translation import gettext_lazy as _
 
 try:
@@ -82,14 +84,35 @@ ELASTICSEARCH_CONNECTION_OPTIONS = {
 
 # a prefix to append to all elasticsearch indexes, note: must be lower case
 ELASTICSEARCH_PREFIX = "graves"
-
-ELASTICSEARCH_CUSTOM_INDEXES = []
-# [{
-#     'module': 'graves.search_indexes.sample_index.SampleIndex',
-#     'name': 'my_new_custom_index', <-- follow ES index naming rules
-#     'should_update_asynchronously': False  <-- denotes if asynchronously updating the index would affect custom functionality within the project.
-# }]
-
+REFERENCES_INDEX_NAME = "references"
+ELASTICSEARCH_CUSTOM_INDEXES = [{
+     "module": "arches_controlled_lists.search_indexes.reference_index.ReferenceIndex",
+     "name": REFERENCES_INDEX_NAME,
+     "should_update_asynchronously": True,
+}]
+TERM_SEARCH_TYPES = [
+    {
+        "type": "term",
+        "label": _("Term Matches"),
+        "key": "terms",
+        "module": "arches.app.search.search_term.TermSearch",
+    },
+    {
+        "type": "concept",
+        "label": _("Concepts"),
+        "key": "concepts",
+        "module": "arches.app.search.concept_search.ConceptSearch",
+    },
+    {
+        "type": "reference",
+        "label": _("References"),
+        "key": REFERENCES_INDEX_NAME,
+        "module": "arches_controlled_lists.search_indexes.reference_index.ReferenceIndex",
+    },
+]
+ES_MAPPING_MODIFIER_CLASSES = [
+    "arches_controlled_lists.search.references_es_mapping_modifier.ReferencesEsMappingModifier"
+]
 KIBANA_URL = "http://localhost:5601/"
 KIBANA_CONFIG_BASEPATH = "kibana"  # must match Kibana config.yml setting (server.basePath) but without the leading slash,
 # also make sure to set server.rewriteBasePath: true
@@ -146,6 +169,10 @@ INSTALLED_APPS = (
     "pgtrigger",
     # "silk",
     "graves",  # Ensure the project is listed before any other arches applications
+    "django.contrib.postgres",
+    "arches_querysets",
+    "arches_component_lab",
+    "arches_controlled_lists",
 )
 
 # Placing this last ensures any templates provided by Arches Applications
