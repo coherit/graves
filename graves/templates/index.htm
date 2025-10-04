@@ -47,7 +47,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
     {% block css %}
         <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin">
         <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bentham&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
         <link rel="stylesheet" type="text/css" href="{% webpack_static 'plugins/slick/slick.min.css' %}">
         <link rel="stylesheet" type="text/css" href="{% webpack_static 'plugins/slick/accessible-slick-theme.min.css' %}">
 
@@ -247,7 +250,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                     class="down-button" 
                     aria-label="{% trans 'Go to content' %}"
                 >
-                    <i class="fa fa-angle-down down-button-icon"></i>
+                    <i class="fa-solid fa-angle-down down-button-icon"></i>
                 </a>
 
             </section>
@@ -589,8 +592,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                 dots: true,
                 autoplay: true,
                 autoplaySpeed: 6000,
-                prevArrow: `<button type='button' class='slick-prev pull-left' aria-label="{% trans 'Go to previous slide' %}"><i class='fa fa-chevron-left' aria-hidden='true'></i></button>`,
-                nextArrow: `<button type='button' class='slick-next pull-right' aria-label="{% trans 'Go to next slide' %}"><i class='fa fa-chevron-right' aria-hidden='true'></i></button>`
+                prevArrow: `<button type='button' class='slick-prev pull-left' aria-label="{% trans 'Go to previous slide' %}"><i class='fa-solid fa-chevron-left' aria-hidden='true'></i></button>`,
+                nextArrow: `<button type='button' class='slick-next pull-right' aria-label="{% trans 'Go to next slide' %}"><i class='fa-solid fa-chevron-right' aria-hidden='true'></i></button>`
             });
 
             var ViewModel = function () {
