@@ -1,0 +1,30 @@
+/* Front splash screen */
+.v5-splash-navbar {
+    background-color: #F2EFE4 !important;
+}
+.navbar-brand-v5-icon-container {
+    height: 80px;
+}
+.navbar-brand-icon {
+    height: 74px;
+}
+.navbar-nav > li > a {
+    font-size: 1rem;
+    font-weight: 500;
+}
+.navbar-nav>li> .application-login {
+    color: #012603;
+    border-radius: 2px;
+
+}
+
+body {
+  font-family:Lato,sans-serif;
+  font-size:16px;
+  line-height:1.5;
+  color:black;
+  background-color:#fff
+}
+h1, h2, h3 {
+  font-family: Bentham, serif;
+}
